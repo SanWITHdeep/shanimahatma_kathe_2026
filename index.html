@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ಹರಿಕಥಾ ಮಹೋತ್ಸವ - ಆಹ್ವಾನ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Kannada:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #1a0500;
+            --text-gold: #ffd700;
+            --text-orange: #ff8c00;
+            --text-cream: #ffeebb;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-deep);
+            font-family: 'Noto Serif Kannada', serif;
+            color: var(--text-cream);
+        }
+
+        /* --- 1. BACKGROUND MANDALA (CHAKRA) --- */
+        .mandala-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 150vmax;
+            height: 150vmax;
+            transform: translate(-50%, -50%);
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='none' stroke='%23ff9900' stroke-width='1' d='M100,10 L120,80 L190,100 L120,120 L100,190 L80,120 L10,100 L80,80 Z' opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='60' stroke='%23ffcc00' stroke-width='1' fill='none' opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='40' stroke='%23ffcc00' stroke-width='1' fill='none' opacity='0.4'/%3E%3Cpath d='M100 0 L110 50 L100 100 L90 50 Z' fill='%23ffcc00' opacity='0.1' transform='rotate(0 100 100)' /%3E%3Cpath d='M100 0 L110 50 L100 100 L90 50 Z' fill='%23ffcc00' opacity='0.1' transform='rotate(45 100 100)' /%3E%3Cpath d='M100 0 L110 50 L100 100 L90 50 Z' fill='%23ffcc00' opacity='0.1' transform='rotate(90 100 100)' /%3E%3Cpath d='M100 0 L110 50 L100 100 L90 50 Z' fill='%23ffcc00' opacity='0.1' transform='rotate(135 100 100)' /%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            z-index: -2;
+            opacity: 0.25; /* Increased visibility */
+            animation: spin-mandala 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spin-mandala {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* --- 2. FALLING FLOWERS --- */
+        #flower-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 10; overflow: hidden;
+        }
+        .flower {
+            position: absolute; top: -50px;
+            font-size: 20px;
+            animation: fall linear infinite;
+            filter: drop-shadow(0 0 5px gold);
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- 3. MAIN CONTAINER & SECTIONS --- */
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 600px;
+            margin: 0 auto;
+            /* Gradient overlay to make text readable over mandala */
+            background: linear-gradient(to bottom, transparent, rgba(20,5,0,0.8) 10%, rgba(20,5,0,0.95) 80%);
+            min-height: 100vh;
+            padding-bottom: 150px; /* Space for lamps */
+        }
+
+        section {
+            min-height: 60vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            transition: opacity 1s, filter 1s, transform 1s;
+            opacity: 0; filter: blur(10px); transform: scale(0.9);
+        }
+        section.visible { opacity: 1; filter: blur(0); transform: scale(1); }
+
+        /* --- 4. PHOTO STYLING (3D, Feather, Glow) --- */
+        .photo-wrapper {
+            position: relative;
+            width: 280px;
+            height: auto;
+            margin: 0 auto 30px auto;
+            perspective: 1000px;
+            z-index: 20;
+        }
+
+        .photo-frame {
+            width: 100%;
+            border-radius: 20px; /* Rectangular shape */
+            /* The "Feather" effect using box-shadow inset and outset */
+            box-shadow: 
+                inset 0 0 30px rgba(0,0,0,0.8), /* Inner shadow vignette */
+                0 0 20px 5px rgba(255, 140, 0, 0.6), /* Orange Glow */
+                0 0 50px 10px rgba(255, 215, 0, 0.3); /* Gold outer Aura */
+            
+            animation: float-3d 5s ease-in-out infinite;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+            opacity: 0.9;
+            /* Simple fade mask for edges if supported, else box-shadow handles it */
+            -webkit-mask-image: linear-gradient(black 80%, transparent 100%); 
+        }
+
+        /* Shining Lights Behind Photo */
+        .divine-light {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%; height: 150%;
+            background: radial-gradient(circle, rgba(255,255,200,0.4) 0%, rgba(255,100,0,0) 60%);
+            z-index: -1;
+            animation: pulse-light 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float-3d {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-15px) rotateX(5deg); }
+        }
+        @keyframes pulse-light {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        /* --- 5. TYPOGRAPHY --- */
+        h1 {
+            font-size: 2.2rem;
+            color: var(--text-gold);
+            text-shadow: 0 0 15px rgba(255, 200, 0, 0.5);
+            margin: 10px 0;
+        }
+        p { font-size: 1.1rem; line-height: 1.6; color: var(--text-cream); margin-bottom: 15px; }
+        .highlight { color: var(--text-orange); font-weight: bold; font-size: 1.3rem; }
+        .shloka {
+            font-style: italic; color: #ffcc66;
+            border-left: 3px solid var(--text-orange);
+            padding-left: 15px; margin: 20px 0;
+            background: rgba(255,255,255,0.05);
+            padding: 15px; border-radius: 0 10px 10px 0;
+        }
+
+        /* --- 6. MAP & BUTTON --- */
+        iframe {
+            width: 100%; height: 250px; border: 2px solid var(--text-gold);
+            border-radius: 15px; margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ff8c00, #ffcc00);
+            color: #2c0a00;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+            animation: glow-btn 2s infinite alternate;
+        }
+        @keyframes glow-btn {
+            from { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
+            to { box-shadow: 0 0 25px rgba(255, 200, 0, 0.8); }
+        }
+
+        /* --- 7. LAMPS (Fixed Bottom) --- */
+        .lamps-row {
+            position: fixed; bottom: -10px; left: 0; width: 100%; height: 100px;
+            display: flex; justify-content: space-between; padding: 0 10px;
+            pointer-events: none; z-index: 50;
+        }
+        .lamp-wrap { position: relative; width: 50px; height: 60px; }
+        .base {
+            width: 50px; height: 25px; background: #8b4513;
+            border-radius: 0 0 50px 50px; position: absolute; bottom: 0;
+            box-shadow: inset 0 -5px 5px rgba(0,0,0,0.5);
+        }
+        .flame {
+            width: 15px; height: 30px; background: orange;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute; bottom: 20px; left: 17px;
+            filter: blur(2px);
+            box-shadow: 0 0 15px yellow;
+            animation: flicker 0.1s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { transform: skewX(-2deg) scaleY(1); opacity: 0.9; }
+            100% { transform: skewX(2deg) scaleY(1.1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="mandala-bg"></div>
+
+    <div id="flower-container"></div>
+
+    <div class="lamps-row">
+        <div class="lamp-wrap"><div class="flame"></div><div class="base"></div></div>
+        <div class="lamp-wrap" style="transform: scale(0.8);"><div class="flame"></div><div class="base"></div></div>
+        <div class="lamp-wrap"><div class="flame"></div><div class="base"></div></div>
+    </div>
+
+    <div class="container">
+        
+        <section>
+            <div class="photo-wrapper">
+                <div class="divine-light"></div>
+                <div class="photo-frame">
+                    <img src="image.jpg" alt="God Photo">
+                </div>
+            </div>
+
+            <h1>ಓಂ ಶ್ರೀ ಶನೈಶ್ಚರ ಸ್ವಾಮಿ</h1>
+            <div class="shloka">
+               | ನೀಲಾಂಜನ ಸಮಾಭಾಸಂ ರವಿಪುತ್ರಂ ಯಮಾಗ್ರಜಂ |<br>
+                || ಛಾಯಾ ಮಾರ್ತಾಂಡ ಸಂಭೂತಂ ತಂ ನಮಾಮಿ ಶನೈಶ್ಚರಂ ||
+            </div>
+        </section>
+
+        <section>
+            <h1>ಹರಿಕಥಾ ಮಹೋತ್ಸವ 2026</h1>
+            <p>ಶ್ರೀ ಶನೈಶ್ಚರ ಸ್ವಾಮಿಯ ಸನ್ನಿಧಿಯಲ್ಲಿ</p>
+            <p style="font-size: 2rem;">🙏</p>
+        </section>
+
+        <section>
+            <h2 class="highlight">ದಿನಾಂಕ 06-03-2026 ಶುಕ್ರವಾರ</h2>
+            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                <p>🕘 <strong>ಬೆಳಿಗ್ಗೆ 9.00:</strong> ಅಭಿಷೇಕ & ಮಹಾಮಂಗಳಾರತಿ</p>
+                <p>🕙 <strong>ಬೆಳಿಗ್ಗೆ 10.00:</strong> "ಹರಿಕಥೆ" ಕಾರ್ಯಕ್ರಮ</p>
+                <p>🍽️ <strong>ಮಧ್ಯಾಹ್ನ 12.30 & ರಾತ್ರಿ 8.30:</strong> ಪ್ರಸಾದ ವಿನಿಯೋಗ</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="highlight">ಸ್ಥಳ: ಚೆನ್ನೇನಹಳ್ಳಿ</h2>
+            <p>ಸರ್ವರಿಗೂ ಆದರದ ಸ್ವಾಗತ</p>
+            
+            <iframe 
+                src="https://www.google.com/maps?q=12.979177914434684,77.43131745309287&z=15&output=embed" 
+                loading="lazy">
+            </iframe>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=12.979177914434684,77.43131745309287" class="btn">
+                📍 Open in Google Maps
+            </a>
+        </section>
+
+    </div>
+
+    <script>
+        // --- Flowers Logic ---
+        const flowerContainer = document.getElementById('flower-container');
+        const flowers = ['🌸', '🌼', '🌺', '🍃'];
+        
+        setInterval(() => {
+            const f = document.createElement('div');
+            f.className = 'flower';
+            f.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+            f.style.left = Math.random() * 100 + '%';
+            f.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            f.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            flowerContainer.appendChild(f);
+            setTimeout(() => f.remove(), 7000);
+        }, 300);
+
+        // --- Scroll Observer ---
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+                else entry.target.classList.remove('visible'); // Blur out when scrolling away
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('section').forEach(sec => observer.observe(sec));
+    </script>
+</body>
+</html>
